@@ -5,10 +5,13 @@ import { Surface, Symbols } from "recharts";
 
 const useStyles = makeStyles((theme) => ({
   legendText: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 400,
     textTransform: "capitalize",
     marginLeft: 4,
+    [theme.breakpoints.down("md")]: {
+      fontSize: "13px",
+    },
   },
 }));
 export default function WrappedLegends(props) {
@@ -32,7 +35,7 @@ export default function WrappedLegends(props) {
         // const active = ""; //_.includes(this.state.disabled, dataKey);
         const style = {
           marginRight: 10,
-          color: isDisabled?.includes(dataKey) ? "#AAA" : "#000",
+          color: isDisabled?.includes(dataKey) ? "#AAA" : "#8F95A3",
         };
 
         return (
@@ -42,8 +45,8 @@ export default function WrappedLegends(props) {
             onClick={() => hideShowGraphLegendClick(dataKey)}
             style={style}
           >
-            <Surface width={10} height={10} viewBox="0 0 10 10">
-              <Symbols cx={5} cy={5} type="circle" size={50} fill={color} />
+            <Surface width={20} height={10} viewBox="0 0 10 10">
+              <Symbols cx={15} cy={5} type="circle" size={80} fill={color} />
               {isDisabled?.includes(dataKey) && (
                 <Symbols cx={5} cy={5} type="circle" size={25} fill={"#FFF"} />
               )}
