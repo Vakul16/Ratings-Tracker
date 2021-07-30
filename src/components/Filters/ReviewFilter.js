@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
-import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
@@ -10,7 +9,6 @@ import { Grid } from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
 import "./ReviewFilter.css";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
-import { CenterFocusStrong } from "@material-ui/icons";
 const useStyles = makeStyles((theme) => ({
   root: {
     marginLeft: 45,
