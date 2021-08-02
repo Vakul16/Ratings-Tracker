@@ -1,7 +1,9 @@
 import { Grid, Typography, makeStyles, Box } from "@material-ui/core";
 import React from "react";
+import TextField from "@material-ui/core/TextField";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Divider from "@material-ui/core/Divider";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
   paper: {},
@@ -67,7 +69,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function StarRating({ StarRatingData }) {
+export default function StarRating({
+  StarRatingData,
+  backgroundColor,
+  label,
+  ratingNum,
+  ...props
+}) {
   const classes = useStyles();
   const [progress, setProgress] = React.useState(0);
 
@@ -101,6 +109,7 @@ export default function StarRating({ StarRatingData }) {
           display="flex"
           alignItems="center"
           justifyContent="center"
+          {...props}
         >
           <Typography
             variant="caption"
@@ -108,7 +117,7 @@ export default function StarRating({ StarRatingData }) {
             // color="textSecondary"
             className={classes.rate}
           >
-            3.75
+            {ratingNum}
           </Typography>
         </Box>
       </Box>
@@ -116,10 +125,15 @@ export default function StarRating({ StarRatingData }) {
   }
 
   return (
-    <Grid xs={12} className={classes.root}>
+    <Grid
+      xs={12}
+      className={classes.root}
+      style={backgroundColor && { backgroundColor }}
+    >
       <Grid xs={8} className={classes.percent}>
         <CircularProgressWithLabel />
         <Typography className={classes.overAllRating}>
+          {label}
           OVERALL RATING
         </Typography>
       </Grid>
@@ -128,6 +142,7 @@ export default function StarRating({ StarRatingData }) {
         orientation="vertical"
         variant="middle"
         flexItem
+        {...props}
       />
       <Grid xs={4} className={classes.rating}>
         <Typography className={classes.rated}>14</Typography>
@@ -136,3 +151,35 @@ export default function StarRating({ StarRatingData }) {
     </Grid>
   );
 }
+
+StarRating.propTypes = {
+  /**
+   * Is this the principal call to action on the page?
+   */
+  primary: PropTypes.bool,
+  /**
+   * What background color to use
+   */
+  backgroundColor: PropTypes.string,
+  /**
+   * How large should the button be?
+   */
+  size: PropTypes.oneOf(["small", "medium", "large"]),
+  /**
+   * Button contents
+   */
+  label: PropTypes.string.isRequired,
+  ratingNum: PropTypes.number.isRequired,
+  /**
+   * 
+   * Optional click handler
+   */
+  onClick: PropTypes.func,
+};
+
+StarRating.defaultProps = {
+  backgroundColor: null,
+  primary: false,
+  size: "medium",
+  onClick: "clicked",
+};

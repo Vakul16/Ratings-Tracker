@@ -71,7 +71,7 @@ export default function Index() {
         <Grid item container spacing={2}>
           <Grid item xs={12} sm={12} md={6} lg={3}>
             <BoxLayout label="Star Rating" white={true}>
-              <StarRating />
+              <StarRating ratingNum={3.75} />
             </BoxLayout>
           </Grid>
 
