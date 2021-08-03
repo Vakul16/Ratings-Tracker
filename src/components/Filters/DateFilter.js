@@ -6,7 +6,6 @@ import { Typography } from "@material-ui/core";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
 const useStyles = makeStyles((theme) => ({
   root: {
     marginLeft: 45,

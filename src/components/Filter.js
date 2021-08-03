@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import DateFilter from "./Filters/DateFilter";
 import ReviewFilter from "./Filters/ReviewFilter";
 import PortfolioFilter from "./Filters/PortfolioFilter";
@@ -16,6 +16,8 @@ import Select from "@material-ui/core/Select";
 import "./Filter.css";
 import FilterTitle from "./Filters/FilterTitle";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import { useHistory } from "react-router-dom";
+import history from "./history";
 const queryString = require("query-string");
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -163,9 +165,16 @@ const Filter = () => {
   const handleChange = (event) => {
     setReview(event.target.value);
   };
-  const filterDataSubmit = (e) => {
-    e.preventDefault();
-
+  useEffect(() => {
+    // get all the URLParams
+    const params = new URLSearchParams(document.location.search);
+    // get the q param
+    const q = params.get("q");
+    // set language in state to the q parameter
+    history.push(document.location.search);
+    //eslint-disable-next-line
+  }, []);
+  const filterDataSubmit = () => {
     let formatedStartDate = changeDateFormat(filterData.startDate);
     let formatedEndDate = changeDateFormat(filterData.endDate);
 
@@ -175,6 +184,7 @@ const Filter = () => {
     });
     // console.log(stringified);
     document.location.search = stringified;
+    history.replace(stringified);
     // console.log(document.location.search);
     // console.log(filterData);
   };

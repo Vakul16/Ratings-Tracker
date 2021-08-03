@@ -60,12 +60,22 @@ const useStyles = makeStyles((theme) => ({
   },
   progressBar: {
     color: "#0fa9de",
+    // color: theme.palette.grey[theme.palette.type === "light" ? 100 : 700],
     marginBottom: "10px",
   },
   divider: {
     backgroundColor: "lightgray",
     marginTop: "5px",
     height: "150px",
+  },
+  top: {
+    color: "#1a90ff",
+    animationDuration: "550ms",
+    position: "absolute",
+    left: 0,
+  },
+  circle: {
+    strokeLinecap: "round",
   },
 }));
 
@@ -81,8 +91,8 @@ export default function StarRating({
 
   React.useEffect(() => {
     const timer = setInterval(() => {
-      setProgress((prevProgress) => (prevProgress >= 0 ? 130 : prevProgress));
-    }, 700);
+      setProgress((prevProgress) => (prevProgress >= 0 ? 125 : prevProgress));
+    }, 800);
 
     return () => {
       clearInterval(timer);
@@ -94,11 +104,22 @@ export default function StarRating({
       <Box position="relative" display="inline-flex">
         <CircularProgress
           variant="determinate"
-          value={progress}
+          value={125}
           size="5.5rem"
           className={classes.progressBar}
           thickness={2.5}
-          background="gray"
+          // backgroundColor="red"
+        />
+        <CircularProgress
+          variant="indeterminate"
+          disableShrink
+          className={classes.top}
+          classes={{
+            circle: classes.circle,
+          }}
+          size={80}
+          thickness={4}
+          {...props}
         />
         <Box
           top={0}
@@ -171,7 +192,7 @@ StarRating.propTypes = {
   label: PropTypes.string.isRequired,
   ratingNum: PropTypes.number.isRequired,
   /**
-   * 
+   *
    * Optional click handler
    */
   onClick: PropTypes.func,
