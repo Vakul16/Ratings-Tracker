@@ -73,4 +73,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ## Technolgies Used:
 
-### JavaScript, ReactJs, HTML & CSS, Material UI, React DatePicker, Chart.js and React Storybook.
+### JavaScript, ReactJs, HTML & CSS, Material UI, React DatePicker, Chart.js, React-Spring and React Storybook.
