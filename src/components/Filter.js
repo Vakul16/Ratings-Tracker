@@ -14,16 +14,15 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import "./Filter.css";
+import { useLocation } from "react-router-dom";
 import FilterTitle from "./Filters/FilterTitle";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
-import { useHistory } from "react-router-dom";
-import history from "./history";
+// import history from "./history";
 const queryString = require("query-string");
 const useStyles = makeStyles((theme) => ({
   root: {
     textDecoration: "none",
   },
-
   Dbtn: {
     width: "64%",
     height: "40px",
@@ -141,7 +140,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "5px",
   },
 }));
-const Filter = () => {
+const Filter = (props) => {
   const classes = useStyles();
   const [review, setReview] = React.useState("");
   const [filterData, setFilterData] = React.useState({
@@ -165,15 +164,19 @@ const Filter = () => {
   const handleChange = (event) => {
     setReview(event.target.value);
   };
-  useEffect(() => {
-    // get all the URLParams
-    const params = new URLSearchParams(document.location.search);
-    // get the q param
-    const q = params.get("q");
-    // set language in state to the q parameter
-    history.push(document.location.search);
-    //eslint-disable-next-line
-  }, []);
+  // useEffect(() => {
+  //   // get all the URLParams
+  //   const params = new URLSearchParams(document.location.search);
+  //   // get the q param
+  //   const q = params.get("q");
+  //   // set language in state to the q parameter
+  //   history.push(document.location.search);
+  //   //eslint-disable-next-line
+  // }, []);
+  // const search = useLocation().search;
+  // const name = new URLSearchParams(search).get("name");
+  // const id = new URLSearchParams(search).get("id");
+
   const filterDataSubmit = () => {
     let formatedStartDate = changeDateFormat(filterData.startDate);
     let formatedEndDate = changeDateFormat(filterData.endDate);
@@ -184,7 +187,7 @@ const Filter = () => {
     });
     // console.log(stringified);
     document.location.search = stringified;
-    history.replace(stringified);
+    // history.replace(stringified);
     // console.log(document.location.search);
     // console.log(filterData);
   };

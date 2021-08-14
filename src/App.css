@@ -3,10 +3,10 @@
   justify-content: center;
   align-items: flex-start;
   background-color: #e9e9ec;
-  height: 1245px;
+  height: 100vh;
 }
 .sidenav {
-  height: 160vh;
+  height: 120vh;
   align-self: stretch;
   display: flex;
   flex-direction: column;
