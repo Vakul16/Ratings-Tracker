@@ -1,10 +1,10 @@
 import React from "react";
 
 import { Button } from "./Button";
-
 export default {
   title: "Table/Button",
   component: Button,
+  // decorators: [(story) => <Center>{story()}</Center>],
   argTypes: {
     backgroundColor: { control: "color" },
   },
