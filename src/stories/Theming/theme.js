@@ -1,6 +1,5 @@
 import { red } from "@material-ui/core/colors";
 import { createTheme } from "@material-ui/core/styles";
-import { muiTheme } from "storybook-addon-material-ui";
 // A custom theme for this app
 const theme1 = createTheme({
   palette: {

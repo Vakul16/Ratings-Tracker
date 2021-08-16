@@ -6,6 +6,7 @@ import ReviewTrend from "views/ReviewManagement/Components/snapshot/ReviewTrend"
 import BoxLayout from "views/ReviewManagement/Components/Layouts/BoxLayout";
 import RatingsRollup from "./RatingsRollup";
 import RatingsBreakdown from "./RatingsBreakdown";
+import Fade from "react-reveal/Fade";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -22,49 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default function Index() {
-  const [radioData, setRadioData] = useState([
-    {
-      id: 1,
-      value: false,
-      label: "Average Star Rating",
-    },
-    {
-      id: 2,
-      value: false,
-      label: "Number of Reviews",
-    },
-    {
-      id: 3,
-      value: false,
-      label: "Number of Responses",
-    },
-    {
-      id: 4,
-      value: false,
-      label: "Responses Pending Approval",
-    },
-    {
-      id: 5,
-      value: false,
-      label: "Problem Responses",
-    },
-  ]);
   const classes = useStyles();
-  const handleRadioChange = (e) => {
-    // e.prevent.default();
-    console.log(e);
-    let newRadioData = radioData.map((item) => {
-      if (item.id === e) {
-        item.value = true;
-        return item;
-      } else {
-        item.value = false;
-        return item;
-      }
-    });
-    setRadioData(newRadioData);
-  };
-
   return (
     <Grid style={{ marginTop: 10 }} xs={12}>
       <div className={classes.root}>
@@ -88,13 +47,72 @@ export default function Index() {
         </Grid>
       </div>
       <div style={{ marginTop: 20 }}>
-        <BoxLayout label="Review Trends">
-          <ReviewTrend
-            filterData={radioData}
-            setFilterSelected={handleRadioChange}
-          />
-        </BoxLayout>
+        <Fade left>
+          <ReactRevealReview />
+        </Fade>
+        <Fade right>
+          <ReactRevealReview />
+        </Fade>
+        <Fade left>
+          <ReactRevealReview />
+        </Fade>
+        <Fade right>
+          <ReactRevealReview />
+        </Fade>
+        <Fade left>
+          <ReactRevealReview />
+        </Fade>
       </div>
     </Grid>
   );
 }
+
+const ReactRevealReview = () => {
+  const [radioData, setRadioData] = useState([
+    {
+      id: 1,
+      value: false,
+      label: "Average Star Rating",
+    },
+    {
+      id: 2,
+      value: true,
+      label: "Number of Reviews",
+    },
+    {
+      id: 3,
+      value: false,
+      label: "Number of Responses",
+    },
+    {
+      id: 4,
+      value: false,
+      label: "Responses Pending Approval",
+    },
+    {
+      id: 5,
+      value: false,
+      label: "Problem Responses",
+    },
+  ]);
+  const handleRadioChange = (e) => {
+    let newRadioData = radioData.map((item) => {
+      if (item.id === e) {
+        item.value = true;
+        return item;
+      } else {
+        item.value = false;
+        return item;
+      }
+    });
+    setRadioData(newRadioData);
+  };
+  return (
+    <BoxLayout label="Review Trends">
+      <ReviewTrend
+        filterData={radioData}
+        setFilterSelected={handleRadioChange}
+      />
+    </BoxLayout>
+  );
+};

@@ -1,6 +1,5 @@
 import { Grid, Typography, makeStyles, Box } from "@material-ui/core";
 import React from "react";
-import TextField from "@material-ui/core/TextField";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Divider from "@material-ui/core/Divider";
 import PropTypes from "prop-types";
@@ -88,7 +87,7 @@ export default function StarRating({
 }) {
   const classes = useStyles();
   const [progress, setProgress] = React.useState(0);
-
+  console.log(progress);
   React.useEffect(() => {
     const timer = setInterval(() => {
       setProgress((prevProgress) => (prevProgress >= 0 ? 125 : prevProgress));
@@ -197,10 +196,10 @@ StarRating.propTypes = {
    */
   onClick: PropTypes.func,
 };
-
 StarRating.defaultProps = {
   backgroundColor: null,
   primary: false,
   size: "medium",
   onClick: "clicked",
+  label: "",
 };

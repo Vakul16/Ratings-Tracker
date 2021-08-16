@@ -4,11 +4,9 @@ import { makeStyles } from "@material-ui/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
-import Fade from "react-reveal/Fade";
-import BoxLayout from "views/ReviewManagement/Components/Layouts/BoxLayout";
-import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import Snapshot from "../views/ReviewManagement/Components/snapshot/index";
-import ReviewTrend from "views/ReviewManagement/Components/snapshot/ReviewTrend";
+import ReactSpringReview from "./ReactSpringReview";
+import MaterialAnimation from "./MaterialAnimation";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -67,7 +65,6 @@ export default function TabContainer() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
   return (
     <div className={classes.root}>
       <Tabs
@@ -86,76 +83,11 @@ export default function TabContainer() {
       </Tabs>
       <TabPanel value={value} index={0}>
         <Snapshot />
-        <Fade bottom>
-          <BoxLayout label="Review Trends">
-            <ReviewTrend
-            // filterData={radioData}
-            // setFilterSelected={handleRadioChange}
-            />
-          </BoxLayout>
-        </Fade>
-        <ReactReveal />
-        <ReactReveal />
-        <ReactReveal />
-        <ReactReveal />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        {/* This is second tab */}
-        <Parallax
-          pages={1}
-          style={{
-            width: "61%",
-            height: "100%",
-            left: 278,
-            top: 138,
-            background: "#fff",
-          }}
-        >
-          <ParallaxLayer
-            offset={0}
-            speed={2.5}
-            style={{
-              height: "100%",
-              // display: "flex",
-              // justifyContent: "center",
-              // alignItems: "center",
-            }}
-          >
-            <Snapshot />
-          </ParallaxLayer>
-
-          <ParallaxLayer
-            offset={1}
-            speed={2}
-            style={{ backgroundColor: "lightgray" }}
-          />
-
-          <ParallaxLayer
-            offset={1}
-            speed={0.5}
-            style={{
-              height: "100%",
-              // display: "flex",
-              // justifyContent: "center",
-              // alignItems: "center",
-              color: "white",
-            }}
-          >
-            <Snapshot />
-          </ParallaxLayer>
-        </Parallax>
+        {/* <ReactSpringReview /> */}
+        <MaterialAnimation />
       </TabPanel>
     </div>
   );
 }
-
-const ReactReveal = ({ filterData, setFilterSelected }) => {
-  const classes = useStyles();
-  return (
-    <Fade bottom>
-      <BoxLayout label="Review Trends">
-        <ReviewTrend {...filterData} {...setFilterSelected} />
-      </BoxLayout>
-    </Fade>
-  );
-};
