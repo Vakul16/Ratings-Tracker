@@ -6,13 +6,7 @@
   height: 100vh;
 }
 .sidenav {
-  height: 120vh;
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
+  height: 345vh;
   background-color: #383e4c;
 }
 .home {
@@ -20,10 +14,6 @@
 }
 .header {
   height: 65px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
   background-color: #383e4c;
 }
 .tab {
