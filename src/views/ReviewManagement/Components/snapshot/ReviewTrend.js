@@ -123,7 +123,7 @@ ReviewTrend.propTypes = {
   /**
    * Button contents
    */
-  label: PropTypes.string.isRequired,
+  // label: PropTypes.string.isRequired,
   /**
    * Optional click handler
    */
@@ -134,5 +134,5 @@ ReviewTrend.defaultProps = {
   backgroundColor: null,
   primary: false,
   size: 'medium',
-  onClick: "clicked",
+  // onClick: "clicked",
 };

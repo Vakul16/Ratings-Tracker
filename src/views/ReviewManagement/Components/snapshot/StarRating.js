@@ -194,12 +194,12 @@ StarRating.propTypes = {
    *
    * Optional click handler
    */
-  onClick: PropTypes.func,
+  // onClick: PropTypes.func,
 };
 StarRating.defaultProps = {
   backgroundColor: null,
-  primary: false,
+  // primary: false,
   size: "medium",
-  onClick: "clicked",
+  // onClick: "clicked",
   label: "",
 };

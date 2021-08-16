@@ -17,20 +17,20 @@ const theme1 = createTheme({
     },
   },
 });
-const theme2 = createTheme({
-  palette: {
-    primary: {
-      main: "#8862a1",
-    },
-    secondary: {
-      main: "#f6144a",
-    },
-    error: {
-      main: red.A400,
-    },
-    background: {
-      default: "#fff",
-    },
-  },
-});
-export default [theme1, theme2];
+// const theme2 = createTheme({
+//   palette: {
+//     primary: {
+//       main: "#8862a1",
+//     },
+//     secondary: {
+//       main: "#f6144a",
+//     },
+//     error: {
+//       main: red.A400,
+//     },
+//     background: {
+//       default: "#fff",
+//     },
+//   },
+// });
+export default theme1;
