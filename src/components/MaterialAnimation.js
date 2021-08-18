@@ -26,6 +26,11 @@ const useStyles = makeStyles((theme) => ({
     top: "180px",
     right: "360px",
   },
+  arrow1: {
+    position: "absolute",
+    top: "250px",
+    right: "360px",
+  },
 }));
 
 export default function MaterialAnimation() {
@@ -35,6 +40,10 @@ export default function MaterialAnimation() {
   const [open, setOpen] = React.useState(false);
   const handleClick = () => {
     setOpen(!open);
+  };
+  const [open1, setOpen1] = React.useState(false);
+  const handleClick1 = () => {
+    setOpen1(!open1);
   };
   const handleScroll = () => setOffsetY(window.pageYOffset);
   useEffect(() => {
@@ -116,10 +125,21 @@ export default function MaterialAnimation() {
         >
           <Paper elevation={0}>
             <BoxLayout label="Review Trends">
-              <ReviewTrend
-                filterData={radioData}
-                setFilterSelected={handleRadioChange}
-              />
+              <div button onClick={handleClick1} className={classes.arrow1}>
+                {open1 ? (
+                  <ExpandLess className={classes.expandLess} />
+                ) : (
+                  <ExpandMore className={classes.expandMore} />
+                )}
+              </div>
+              <Collapse in={open1} timeout="auto" unmountOnExit>
+                <div component="div" disablePadding>
+                  <ReviewTrend
+                    filterData={radioData}
+                    setFilterSelected={handleRadioChange}
+                  />
+                </div>
+              </Collapse>
             </BoxLayout>
           </Paper>
         </Fade>
