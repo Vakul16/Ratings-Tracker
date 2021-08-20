@@ -4,7 +4,6 @@ import starIcon from "./starIcon.png";
 import Collapse from "@material-ui/core/Collapse";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
-import { green } from "@material-ui/core/colors";
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
     borderRadius: "15px",
