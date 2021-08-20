@@ -4,6 +4,7 @@ import starIcon from "./starIcon.png";
 import Collapse from "@material-ui/core/Collapse";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
+import { green } from "@material-ui/core/colors";
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
     borderRadius: "15px",
@@ -50,11 +51,11 @@ const useStyles = makeStyles((theme) => ({
       maxWidth: "60%",
     },
   },
-  expandMore: {
+  expandCollapse: {
     color: "#fff",
   },
-  expandLess: {
-    color: "#fff",
+  expandCollapseWhite: {
+    color: "#2b3b5c",
   },
 }));
 
@@ -79,7 +80,13 @@ export default function BoxLayout(props) {
         <Box className={white ? classes.dataTextWhite : classes.dataText}>
           {label}
         </Box>
-        <div button onClick={handleClick} className={classes.expandCollapse}>
+        <div
+          button
+          onClick={handleClick}
+          className={
+            white ? classes.expandCollapseWhite : classes.expandCollapse
+          }
+        >
           {open ? (
             <ExpandLess className={classes.expandLess} />
           ) : (
