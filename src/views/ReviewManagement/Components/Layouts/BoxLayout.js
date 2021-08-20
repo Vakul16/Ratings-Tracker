@@ -1,6 +1,9 @@
 import { Grid, makeStyles, Box } from "@material-ui/core";
 import React from "react";
 import starIcon from "./starIcon.png";
+import Collapse from "@material-ui/core/Collapse";
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import ExpandMore from "@material-ui/icons/ExpandMore";
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
     borderRadius: "15px",
@@ -19,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   innerTypographyDiv: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
     alignItems: "center",
   },
 
@@ -47,9 +50,19 @@ const useStyles = makeStyles((theme) => ({
       maxWidth: "60%",
     },
   },
+  expandMore: {
+    color: "#fff",
+  },
+  expandLess: {
+    color: "#fff",
+  },
 }));
 
 export default function BoxLayout(props) {
+  const [open, setOpen] = React.useState(false);
+  const handleClick = () => {
+    setOpen(!open);
+  };
   const classes = useStyles();
 
   const { children, label, white } = props;
@@ -62,11 +75,21 @@ export default function BoxLayout(props) {
             <img src={starIcon} alt="Img" />
           </div>
         ) : null}
+
         <Box className={white ? classes.dataTextWhite : classes.dataText}>
           {label}
         </Box>
+        <div button onClick={handleClick} className={classes.expandCollapse}>
+          {open ? (
+            <ExpandLess className={classes.expandLess} />
+          ) : (
+            <ExpandMore className={classes.expandMore} />
+          )}
+        </div>
       </div>
-      {children}
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        {children}
+      </Collapse>
     </Grid>
   );
 }
