@@ -32,8 +32,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PopupSidenav = () => {
+const PopupSidenav = (props) => {
+  const { close, postData, setBlink } = props;
   const classes = useStyles();
+  const handleClose = () => {
+    close();
+    let objIndex = postData.findIndex((ele) => ele.value === true);
+    if (objIndex === -1) {
+      setBlink(false);
+    } else {
+      setBlink(true);
+    }
+  };
+
   return (
     <Grid className="popup-sidenav">
       <div className="side-names1">
@@ -44,7 +55,6 @@ const PopupSidenav = () => {
           <KeyboardArrowRightIcon />
         </span>
       </div>
-      {/* <Divider variant="middle" /> */}
       <div className="side-names2">
         <span>
           <a href="#svp">SVP</a>
@@ -138,6 +148,7 @@ const PopupSidenav = () => {
       <Divider variant="middle" />
       <Button
         className={classes.btn}
+        onClick={handleClose}
         type="submit"
         variant="contained"
         margintop="10"

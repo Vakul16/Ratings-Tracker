@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Typography } from "@material-ui/core";
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import Popup from "./Popup/Popup";
+import Blink from "react-blink-text";
 import { Dialog } from "@material-ui/core";
+import PostData from "./Popup/PopupData";
 const useStyles = makeStyles((theme) => ({
   root: {
     marginLeft: 45,
@@ -28,6 +30,19 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 13,
     color: "#fff",
     fontWeight: 600,
+    animation: "blink 1s linear infinite",
+  },
+  textBlink: {
+    transform: "translate(-50%, -50%)",
+  },
+  textBlinkInner: {
+    color: "#fff",
+    animation: "blink 2s linear infinite",
+  },
+  "@keyframes textBlink": {
+    "0%": { opacity: 0 },
+    "50%": { opacity: 0.5 },
+    "100%": { opacity: 1 },
   },
   heading: {
     paddingTop: 30,
@@ -63,6 +78,23 @@ const useStyles = makeStyles((theme) => ({
 const PortfolioFilter = () => {
   const classes = useStyles();
   const [title, setTitle] = useState("");
+  const [selected, setSelected] = React.useState(PostData);
+  const [blink, setBlink] = React.useState(false);
+  const handleChange = (event) => {
+    // console.log(event);
+    // let objIndex = selected.findIndex(
+    //   (ele) => ele.id.toString() === event.target.name
+    // );
+    // console.log(objIndex);
+    // PostData[objIndex].value = true;
+    let newArray = selected.map((ele) =>
+      ele.id.toString() === event.target.name
+        ? { ...ele, value: !ele.value }
+        : ele
+    );
+    setSelected(newArray);
+    // setSelected({ ...selected, [event.target.name]: event.target.checked });
+  };
   const [openPopup, setOpenPopup] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -73,6 +105,9 @@ const PortfolioFilter = () => {
   const handleClose = () => {
     setOpenPopup(false);
   };
+  useEffect(() => {
+    console.log(blink);
+  }, [blink]);
   return (
     <>
       <Grid item xs={12} className={classes.root}>
@@ -105,9 +140,24 @@ const PortfolioFilter = () => {
             // marginTop="10"
             endIcon={<KeyboardArrowRightIcon className={classes.arrow} />}
           >
-            <Typography className={classes.filBtn}>
-              FILTER PROPERTIES
-            </Typography>
+            {/* {blink ? (
+              <Typography className={classes.textBlink}>
+                <span className={classes.textBlinkInner}>
+                  FILTER PROPERTIES
+                </span>
+              </Typography>
+            ) : (
+              <Typography className={classes.filBtn}>
+                FILTER PROPERTIES
+              </Typography>
+            )} */}
+            {blink ? (
+              <Blink color="red" text="FILTER PROPERTIES" fontSize="13"></Blink>
+            ) : (
+              <Typography className={classes.filBtn}>
+                FILTER PROPERTIES
+              </Typography>
+            )}
           </Button>
         </form>
       </Grid>
@@ -116,7 +166,12 @@ const PortfolioFilter = () => {
         maxWidth="lg"
         aria-labelledby="customized-dialog-title"
       >
-        <Popup close={handleClose} />
+        <Popup
+          setBlink={setBlink}
+          postData={selected}
+          handleChange={handleChange}
+          close={handleClose}
+        />
       </Dialog>
     </>
   );

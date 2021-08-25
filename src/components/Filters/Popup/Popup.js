@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const Popup = (props) => {
-  const { close } = props;
+  const { close, handleChange, postData, setBlink } = props;
   const classes = useStyles();
 
   return (
@@ -110,11 +110,11 @@ const Popup = (props) => {
       </Grid>
       <Grid className={classes.combo} container xs={12}>
         <Grid item xs={3}>
-          <PopupSidenav />
+          <PopupSidenav close={close} postData={postData} setBlink={setBlink}/>
         </Grid>
         <Grid className={classes.content} item xs={9}>
           <DialogContent>
-            <PopupContent />
+            <PopupContent postData={postData} handleChange={handleChange} />
             {/* {children} */}
           </DialogContent>
         </Grid>

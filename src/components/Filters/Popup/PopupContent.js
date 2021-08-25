@@ -1,5 +1,5 @@
 import React from "react";
-import PostData from "./PopupData";
+// import PostData from "./PopupData";
 import { Grid } from "@material-ui/core";
 import Checkbox from "@material-ui/core/Checkbox";
 import "./Popup.css";
@@ -30,20 +30,17 @@ const useStyles = makeStyles({
     // },
   },
 });
-const PopupContent = () => {
-  const [state, setState] = React.useState(false);
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
+const PopupContent = ({ handleChange, postData }) => {
   const classes = useStyles();
   return (
     <div className={classes.PopupContentMain}>
-      {PostData?.map((item) => (
+      {postData?.map((item) => (
         <Grid item>
           <Checkbox
+            name={item.id}
             flexWrap
             className={classes.checkboxes}
-            checked={state.value}
+            checked={item.value}
             onChange={handleChange}
             inputProps={{ "aria-label": "primary checkbox" }}
           />
