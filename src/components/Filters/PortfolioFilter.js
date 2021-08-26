@@ -4,7 +4,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Button, Typography } from "@material-ui/core";
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import Popup from "./Popup/Popup";
-import Blink from "react-blink-text";
+// import Blink from "react-blink-text";
+import Bounce from "react-reveal/Bounce";
 import { Dialog } from "@material-ui/core";
 import PostData from "./Popup/PopupData";
 const useStyles = makeStyles((theme) => ({
@@ -32,18 +33,18 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     animation: "blink 1s linear infinite",
   },
-  textBlink: {
-    transform: "translate(-50%, -50%)",
-  },
-  textBlinkInner: {
-    color: "#fff",
-    animation: "blink 2s linear infinite",
-  },
-  "@keyframes textBlink": {
-    "0%": { opacity: 0 },
-    "50%": { opacity: 0.5 },
-    "100%": { opacity: 1 },
-  },
+  // textBlink: {
+  //   // transform: "translate(-50%, -50%)",
+  // },
+  // textBlinkInner: {
+  //   color: "#fff",
+  //   animation: "blink 2s linear infinite",
+  // },
+  // "@keyframes textBlink": {
+  //   "0%": { opacity: 0 },
+  //   "50%": { opacity: 0.5 },
+  //   "100%": { opacity: 1 },
+  // },
   heading: {
     paddingTop: 30,
     paddingBottom: 15,
@@ -67,6 +68,16 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     fontSize: "12px",
     background: "#8f95a3",
+    marginTop: 18,
+    borderRadius: 10,
+  },
+  btnBlinking: {
+    width: "75%",
+    height: "40px",
+    color: "#fff",
+    display: "flex",
+    fontSize: "12px",
+    background: "#FF6666",
     marginTop: 18,
     borderRadius: 10,
   },
@@ -131,34 +142,37 @@ const PortfolioFilter = () => {
             />
             <Typography className={classes.title}>East Region</Typography>
           </Grid>
-          <Button
-            className={classes.btn}
-            onClick={() => setOpenPopup(true)}
-            type="submit"
-            color="primary"
-            variant="contained"
-            // marginTop="10"
-            endIcon={<KeyboardArrowRightIcon className={classes.arrow} />}
-          >
-            {/* {blink ? (
-              <Typography className={classes.textBlink}>
-                <span className={classes.textBlinkInner}>
+          {blink ? (
+            <Bounce bottom>
+              <Button
+                className={classes.btnBlinking}
+                onClick={() => setOpenPopup(true)}
+                type="submit"
+                color="primary"
+                variant="contained"
+                // marginTop="10"
+                endIcon={<KeyboardArrowRightIcon className={classes.arrow} />}
+              >
+                <Typography className={classes.filBtn}>
                   FILTER PROPERTIES
-                </span>
-              </Typography>
-            ) : (
+                </Typography>
+              </Button>
+            </Bounce>
+          ) : (
+            <Button
+              className={classes.btn}
+              onClick={() => setOpenPopup(true)}
+              type="submit"
+              color="primary"
+              variant="contained"
+              // marginTop="10"
+              endIcon={<KeyboardArrowRightIcon className={classes.arrow} />}
+            >
               <Typography className={classes.filBtn}>
                 FILTER PROPERTIES
               </Typography>
-            )} */}
-            {blink ? (
-              <Blink color="red" text="FILTER PROPERTIES" fontSize="13"></Blink>
-            ) : (
-              <Typography className={classes.filBtn}>
-                FILTER PROPERTIES
-              </Typography>
-            )}
-          </Button>
+            </Button>
+          )}
         </form>
       </Grid>
       <Dialog
